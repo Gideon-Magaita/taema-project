@@ -1,0 +1,78 @@
+{% extends 'pages/users/main.html' %}
+{% block content %}
+{% load static %}
+<style>
+.about-page{
+    background: url('{% static "assets/img/bg1.jpg" %}') no-repeat center center;
+  }
+</style>
+    <!-- Page Title -->
+    <div class="page-title about-page" data-aos="fade">
+      <div class="heading">
+        <div class="container">
+          <div class="row d-flex justify-content-center text-center">
+            <div class="col-lg-8">
+              <h1>About Tanzania Electric Mobility Association</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+      <nav class="breadcrumbs">
+        <div class="container">
+          <ol>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li class="current">About</li>
+          </ol>
+        </div>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+      <div class="container">
+        <div class="row gy-4">
+          {% for w in who %}
+          <div class="col-lg-8 content" data-aos="fade-up" data-aos-delay="100">
+            <p class="who-we-are">{{ w.title }}</p>
+            <p style="text-align: justify;">
+              {{ w.description | safe }}
+            </p>
+          </div>
+          {% endfor %}
+
+          <!--mission and vision-->
+          {% for mis in content %}
+          <div class="col-lg-8 content" data-aos="fade-up" data-aos-delay="100">
+            <p class="who-we-are">{{ mis.title }}</p>
+            <p style="text-align: justify;">
+              {{ mis.description | safe }}
+            </p>
+          </div>
+          {% endfor %}
+          
+         {% for v in vision %}
+          <div class="col-lg-8 content" data-aos="fade-up" data-aos-delay="100">
+            <p class="who-we-are">{{ v.title }}</p>
+            <p style="text-align: justify;">
+              {{ v.description | safe }}
+            </p>
+            
+          </div>
+          {% endfor %}
+          <!--mission and vision-->
+
+          <!--objectives-->
+          {% for obj in objective %}
+          <div class="col-lg-8 content" data-aos="fade-up" data-aos-delay="100">
+            <p class="who-we-are">{{ obj.title }}</p>
+            <p style="text-align: justify;">
+              {{ obj.description | safe }}
+            </p>
+            
+          </div>
+          {% endfor %}
+          <!--objectives--> 
+        </div>
+      </div>
+    </section><!-- /About Section -->
+    {% endblock %}

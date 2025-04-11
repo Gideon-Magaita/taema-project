@@ -1,0 +1,53 @@
+
+{% extends 'pages/users/main.html' %}
+{% block content %}
+{% load static %}
+<style>
+.working{
+  background: url('{% static "assets/img/bg1.jpg" %}') no-repeat center center;
+}
+</style>
+    <!-- Page Title -->
+    <div class="page-title working" data-aos="fade">
+      <div class="heading">
+        <div class="container">
+          <div class="row d-flex justify-content-center text-center">
+            <div class="col-lg-8">
+              <h1>Some of our Partners</h1>
+              <p class="mb-0">Corporate Members, Technical Partners and Funding Partners.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <nav class="breadcrumbs">
+        <div class="container">
+          <ol>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li class="current">Projects and Partnership</li>
+          </ol>
+        </div>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <!-- Services Section -->
+    <section id="services" class="services section">
+
+      <div class="container">
+
+        <div class="row gy-4">
+
+            {% for p in partner %}
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+              <div class="service-item position-relative">
+                <img src="{{ p.image.url }}" alt="Gallery Image" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">
+              </div>
+            </div><!-- End Service Item -->
+          {% endfor %}          
+        
+
+        </div>
+
+      </div>
+
+    </section><!-- /Services Section -->
+    {% endblock %}

@@ -1,0 +1,162 @@
+{% extends 'pages/users/main.html' %}
+{% block content %}
+{% load static %}
+    <!-- Hero Section -->
+    <section id="hero" class="hero section dark-background">
+
+      <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+              {% for item in slide %}
+                  <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                      <img src="{{ item.image.url }}" alt="{{ item.title }}">
+                      <div class="carousel-container">
+                          <div>
+                              <p>{{ item.title | safe }}</p>
+                          </div>
+                      </div>
+                  </div>{% endfor %}
+          <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+          </a>
+          <a class="carousel-control-next" href="#hero-carousel" role="button" data-bs-slide="next">
+              <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+          </a>
+          <ol class="carousel-indicators"></ol>
+      </div>
+  </section>
+  
+      <!-- Services Section -->
+      <section id="services" class="services section  service-page">
+        <!-- Section Title -->
+         {% for n in note %}
+        <div class="container section-title" data-aos="fade-up">
+          <h2>Welcome Note</h2>
+          <p>{{ n.title | safe }}</p>
+        </div><!-- End Section Title -->
+         {% endfor %}
+
+        <div class="container section-title">
+          <h2>Our Activities</h2>
+          <div class="row gy-4">
+            {% for a in activity %}
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+              <div class="service-item  position-relative">
+                <div class="icon">
+                  <i class="bi bi-activity"></i>
+                </div>
+                <a href="#" class="stretched-link">
+                  <h3>{{ a.title }}</h3>
+                </a>
+                <p>{{ a.sub_title | safe }}</p>
+              </div>
+            </div>
+            {% endfor %}
+            <!-- End Service Item -->
+          </div>
+        </div>
+      </section><!-- /Services Section -->
+
+
+  <!-- news Section -->
+  <section id="services" class="services section">
+    <div class="container section-title">
+      <h2>Recent Posts</h2>
+      <div class="row gy-4">
+        {% for n in news %}
+        <div class="col-lg-4 col-md-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="service-item position-relative">
+                <img src="{{ n.image.url }}" alt="{{ n.title }}" class="img-fluid" style="width:100%; height: auto; margin-bottom: 10px;">
+    
+                <a href="{% url 'news_details' n.id %}" class="stretched-link">
+                    <h3>{{ n.title }}</h3>
+                </a>
+                <p>{{ n.description|truncatewords:20|safe }}.........Read More</p>
+                <p style="margin-top: 5px; color: rgb(47, 143, 76);">
+                    <i>{{ n.date }}</i>
+                </p>
+            </div>
+        </div><!-- End news Item -->
+        {% endfor %}
+          <!--pagination-->
+          <div class="col-12 d-flex justify-content-center mt-4">
+            <ul class="pagination">
+              {% if news.has_previous %}
+                <li class="page-item">
+                  <a class="page-link" href="?page=1">First</a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="?page={{ news.previous_page_number }}">Previous</a>
+                </li>
+              {% endif %}
+
+              <li class="page-item active">
+                <span class="page-link">Page {{ news.number }} of {{ news.paginator.num_pages }}</span>
+              </li>
+
+              {% if news.has_next %}
+                <li class="page-item">
+                  <a class="page-link" href="?page={{ news.next_page_number }}">Next</a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="?page={{ news.paginator.num_pages }}">Last</a>
+                </li>
+              {% endif %}
+            </ul>
+          </div>
+         <!--end pagination-->
+    </div>
+
+  
+      <!-- Testimonials Section -->
+      <section id="testimonials" class="testimonials section">
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+          <h2>Frequently Asked Questions</h2>
+        </div><!-- End Section Title -->
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+          <div class="swiper init-swiper">
+            <script type="application/json" class="swiper-config">
+              {
+                "loop": true,
+                "speed": 600,
+                "autoplay": {
+                  "delay": 5000
+                },
+                "slidesPerView": "auto",
+                "pagination": {
+                  "el": ".swiper-pagination",
+                  "type": "bullets",
+                  "clickable": true
+                },
+                "breakpoints": {
+                  "320": {
+                    "slidesPerView": 1,
+                    "spaceBetween": 40
+                  },
+                  "1200": {
+                    "slidesPerView": 3,
+                    "spaceBetween": 1
+                  }
+                }
+              }
+            </script>
+            <div class="swiper-wrapper">
+  
+            {% for c in comment %}
+              <div class="swiper-slide">
+                <div class="testimonial-item">
+                  <div class="stars">
+                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                  </div>
+                  <p>
+                    {{ c.title | safe }}
+                  </p>
+                </div>
+              </div>
+              {% endfor %}
+              <!-- End testimonial item -->
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+      </section><!-- /Testimonials Section -->
+{% endblock %}

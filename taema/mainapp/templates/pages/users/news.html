@@ -1,0 +1,86 @@
+{% extends 'pages/users/main.html' %}
+{% block content %}
+{% load static %}
+  <!-- Page Title -->
+<style>
+.news-page{
+  background: url('{% static "assets/img/bg1.jpg" %}') no-repeat center center;
+}
+</style>
+  <div class="page-title news-page" data-aos="fade">
+    <div class="heading">
+      <div class="container">
+        <div class="row d-flex justify-content-center text-center">
+          <div class="col-lg-8">
+            <h1>News & Updates</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav class="breadcrumbs">
+      <div class="container">
+        <ol>
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li class="current">News & Updates</li>
+        </ol>
+      </div>
+    </nav>
+  </div><!-- End Page Title -->
+
+  <!-- Services Section -->
+  <section id="services" class="services section">
+
+    <div class="container">
+
+      <div class="row gy-4">
+
+        {% for n in news %}
+        <div class="col-lg-4 col-md-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="service-item position-relative">
+                
+                <img src="{{ n.image.url }}" alt="{{ n.title }}" class="img-fluid" style="width:100%; height: auto; margin-bottom: 10px;">
+    
+                <a href="{% url 'news_details' n.id %}" class="stretched-link">
+                    <h3>{{ n.title }}</h3>
+                </a>
+                <p>{{ n.description|truncatewords:20|safe }}.........Read More</p>
+                <p style="margin-top: 5px; color: rgb(47, 143, 76);">
+                    <i>{{ n.date }}</i>
+                </p>
+            </div>
+        </div><!-- End Service Item -->
+        {% endfor %}
+   
+    <!--pagination-->
+    <div class="col-12 d-flex justify-content-center mt-4">
+      <ul class="pagination">
+        {% if news.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page=1">First</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="?page={{ news.previous_page_number }}">Previous</a>
+          </li>
+        {% endif %}
+
+        <li class="page-item active">
+          <span class="page-link">Page {{ news.number }} of {{ news.paginator.num_pages }}</span>
+        </li>
+
+        {% if news.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ news.next_page_number }}">Next</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="?page={{ news.paginator.num_pages }}">Last</a>
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+    <!--end pagination-->
+      </div>
+
+    </div>
+
+  </section><!-- /Services Section -->
+  {% endblock %}

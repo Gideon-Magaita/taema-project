@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TAEMA CMS</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="{% static 'admins/plugins/fontawesome-free/css/all.min.css' %}">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="{% static 'admins/plugins/overlayScrollbars/css/OverlayScrollbars.min.css' %}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{% static 'admins/dist/css/adminlte.min.css' %}">
+
+  <!--datatable-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"/>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.2/css/dataTables.bootstrap4.min.css"/>
+  <!--datatable-->
+
+  <!--ckeditor initialization-->
+  {{ form.media }}
+  <!--ckeditor initialization ends here-->
+
+</head>
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<div class="wrapper">
+
+  <!-- Preloader -->
+  <div class="preloader flex-column justify-content-center align-items-center">
+    <img class="animation__wobble" src="{% static 'admins/dist/img/taema-logo.png' %}" alt="AdminLTELogo" height="60" width="60">
+  </div>
+
+  <!-- Navbar -->
+  {% include 'pages/admins/header.html' %}
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary">
+    <!-- Brand Logo -->
+    <a href="{% url 'admin_home' %}" class="brand-link">
+      <img src="{% static 'admins/dist/img/taema-logo.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-bold">TAEMA</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar p-0">
+     
+     
+    <!-- Sidebar Menu -->
+   {% include 'pages/admins/sidebar.html' %}
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+
+    <!-- Content Header (Page header) -->
+  {% block content %}
+
+  {% endblock %}
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+
+  <!-- Main Footer -->
+  <!--footer-->
+  {% include 'pages/admins/footer.html' %}
+  <!--footer-->
+</div>
+<!-- ./wrapper -->
+
+<!-- REQUIRED SCRIPTS -->
+<!-- jQuery -->
+<script src="{% static 'admins/plugins/jquery/jquery.min.js' %}"></script>
+<!-- Bootstrap -->
+<script src="{% static 'admins/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<!-- overlayScrollbars -->
+<script src="{% static 'admins/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js' %}"></script>
+<!-- AdminLTE App -->
+<script src="{% static 'admins/dist/js/adminlte.js' %}"></script>
+
+<!-- PAGE PLUGINS -->
+<!-- jQuery Mapael -->
+<script src="{% static 'admins/plugins/jquery-mousewheel/jquery.mousewheel.js' %}"></script>
+<script src="{% static 'admins/plugins/raphael/raphael.min.js' %}"></script>
+<script src="{% static 'admins/plugins/jquery-mapael/jquery.mapael.min.js' %}"></script>
+<script src="{% static 'admins/plugins/jquery-mapael/maps/usa_states.min.js' %}"></script>
+<!-- ChartJS -->
+<script src="{% static 'admins/plugins/chart.js/Chart.min.js' %}"></script>
+
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="{% static 'admins/dist/js/pages/dashboard2.js' %}"></script>
+
+<!--data table js links-->
+<script src="{% static 'assets/js/datatable.js' %}"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src=" https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+<script src=" https://cdn.datatables.net/1.13.2/js/dataTables.bootstrap4.min.js"></script>
+            
+<script type="text/javascript">
+  $(document).ready(function() {
+      $('#mytable').DataTable({
+          responsive: true
+      });
+  });
+  </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+{% load static %}
+<style>
+  .working{
+    background: url('{% static "assets/img/bg2.jpg" %}') no-repeat center center;
+  }
+</style>
+<footer id="footer" class="footer light-background working">
+<div class="container">
+    <div class="row gy-3">
+      <div class="col-lg-3 col-md-6 d-flex">
+        <i class="bi bi-geo-alt icon"></i>
+        <div class="address">
+          <h4>Address</h4>
+          <p style="text-align: justify;">TANZANIA ELECTRIC MOBILITY ASSOCIATION (TAEMA)
+
+            Off Ali hasan Mwinyi Road, White House Business Center,
+            
+            4TH Floor - Office No. 1 Plot No. 288, Makwaia Street,
+            
+            Regent Estate,
+            
+            P.O.Box 79708, Dar es Salaam. Mob: +255 767 328 831</p>
+          <p></p>
+        </div>
+
+      </div>
+
+      <div class="col-lg-3 col-md-6 d-flex">
+        <i class="bi bi-telephone icon"></i>
+        <div>
+          <h4>Contact</h4>
+          <p>
+            <strong>Phone:</strong> <span>+255767184628</span><br>
+            <strong>Email:</strong> <span>info@taema.org</span><br>
+          </p>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 d-flex">
+        <div>
+          <div class="row">
+            <div class="col-md-8">
+              <h4>Quick Links</h4>
+              <p>
+                <a href="{% url 'about' %}" style="color: rgb(40, 40, 40);">About</a><br>
+                <a href="{% url 'news' %}" style="color: rgb(40, 40, 40);">News & Updates</a>
+                <a href="{% url 'membership' %}" style="color: rgb(40, 40, 40);">Membership</a><br>
+                <a href="{% url 'downloads' %}" style="color: rgb(40, 40, 40);">Downloads</a>
+              </p>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6">
+        <h4>Follow Us</h4>
+        <div class="social-links d-flex">
+          <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
+          <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+          <a href="https://www.linkedin.com/company/tanzania-electric-mobility-association-taema/" class="linkedin"><i class="bi bi-linkedin"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="container copyright text-center mt-4">
+    <p>© <span>Copyright</span> <strong class="px-1 sitename">2025</strong></p>
+  </div>
+</footer>

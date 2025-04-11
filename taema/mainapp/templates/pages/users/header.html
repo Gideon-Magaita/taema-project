@@ -1,0 +1,35 @@
+{% load static %}
+<div class="top-header">
+    <h2 class="taema">Tanzania Electric Mobility Association (TAEMA)</h2>
+</div>
+  <header id="header" class="header d-flex align-items-center fixed-top">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+            <a href="{% url 'home' %}" class="logo d-flex align-items-center">
+            <!-- Uncomment the line below if you also wish to use an image logo -->
+            <img src="{% static 'assets/img/logo2.png' %}" alt="">
+            
+            <!-- <h1 class="sitename">TAE<span>MA</span></h1> -->
+            </a>
+
+            <nav id="navmenu" class="navmenu">
+            <ul>
+                <li><a href="{% url 'home' %}" class="{% if request.path == '/'%}active{% endif %}">Home</a></li>
+                <li><a href="{% url 'about' %}" class="{% if request.path == '/about'%}active{% endif %}">About Us</a></li>
+                <li><a href="{% url 'news' %}" class="{% if request.path == '/news'%}active{% endif %}">News & Updates</a></li>
+                <li><a href="{% url 'membership' %}" class="{% if request.path == '/membership'%}active{% endif %}">Membership</a></li>
+                <li class="dropdown"><a href="#"><span>Other Links</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <ul>
+                    <li><a href="{% url 'downloads' %}">Downloads</a></li>
+                    <li><a href="{% url 'working_groups' %}">Working Groups</a></li>
+                    <li><a href="{% url 'photo_gall' %}">Photo Gallery</a></li>
+                    <!-- <li><a href="{% url 'works' %}">Our work & Initiatives</a></li> -->
+                    <li><a href="{% url 'projects' %}">Projects and Partnership</a></li>
+                </ul>
+                </li>
+                <li><a href="{% url 'contact' %}" class="{% if request.path == '/contact'%}active{% endif %}">Contact Us</a></li>
+            </ul>
+            <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+
+        </div>
+</header>

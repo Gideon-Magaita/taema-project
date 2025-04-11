@@ -1,0 +1,241 @@
+<nav class="mt-2">
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+      <!-- Add icons to the links using the .nav-icon class
+           with font-awesome or any other icon font library -->
+      <li class="nav-item menu-open">
+        <a href="{% url 'admin_home' %}" class="nav-link {% if request.path == '/admin_home' %}active{% endif %}">
+          <i class="nav-icon fas fa-tachometer-alt"></i>
+          <p>
+            Dashboard
+          </p>
+        </a>
+        
+      </li>
+      <div class="dropdown-divider"></div>
+
+      <!--home links-->
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="nav-icon fas fa-book"></i>
+          <p>
+            Home Links
+            <i class="fas fa-angle-left right"></i>
+          </p>
+        </a>
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="{% url 'sliders' %}" class="nav-link {% if request.path == '/sliders' %}active{% endif %}">
+              <i class="far fa-circle nav-icon"></i>
+              <p>
+                Sliders
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'welcome_note' %}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Welcome Note</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'activity_performed' %}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Activities</p>
+            </a>
+          </li>
+<!-- 
+          <li class="nav-item">
+            <a href="{% url 'board_member' %}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p> Board Members</p>
+            </a>
+          </li> -->
+
+          <li class="nav-item">
+            <a href="{% url 'comment_function' %}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Comments</p>
+            </a>
+          </li>
+          
+        </ul>
+      </li>
+      <div class="dropdown-divider"></div>
+      <!--home links-->
+
+      <!--About links-->
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="nav-icon fas fa-book"></i>
+          <p>
+           About Links
+            <i class="fas fa-angle-left right"></i>
+          </p>
+        </a>
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="{% url 'who_are_we' %}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>
+                Who Are We
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'mission_function' %}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Mission</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'vision_function' %}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Vision</p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{% url 'objective_function' %}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Objectives</p>
+            </a>
+          </li>
+          
+        </ul>
+      </li>
+      <div class="dropdown-divider"></div>
+      <!--About links-->
+
+      <!--news-->
+      <li class="nav-item">
+        <a href="{% url 'news_update' %}" class="nav-link {% if request.path == '/news_update' %}active{% endif %}">
+          <i class="nav-icon nav-icon fas fa-book"></i>
+          <p>
+            News & Updates
+          </p>
+        </a>
+        
+      </li>
+      <div class="dropdown-divider"></div>
+      <!--news-->
+      <!--membership-->
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="nav-icon fas fa-book"></i>
+          <p>
+           Membership Links
+            <i class="fas fa-angle-left right"></i>
+          </p>
+        </a>
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="{% url 'member_function' %}" class="nav-link  {% if request.path == '/member_function' %}active{% endif %}">
+              <i class="far fa-circle nav-icon"></i>
+              <p>
+                Membership
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'member_benefits' %}" class="nav-link  {% if request.path == '/member_benefits' %}active{% endif %}">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Benefits</p>
+            </a>
+          </li>
+          
+        </ul>
+      </li>
+      <div class="dropdown-divider"></div>
+      <!--membership-->
+
+      <!--Other links-->
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="nav-icon fas fa-book"></i>
+          <p>
+           Other Links
+            <i class="fas fa-angle-left right"></i>
+          </p>
+        </a>
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="{% url 'file_downloads' %}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>
+                Downloads
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'working_group' %}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Working Groups</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'photo_gallery' %}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Photo Gallery</p>
+            </a>
+          </li>
+          <!-- <li class="nav-item">
+            <a href="" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Work & Initiatives</p>
+            </a>
+          </li> -->
+          <li class="nav-item">
+            <a href="{% url 'project_partner' %}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Projects & Partnership</p>
+            </a>
+          </li>
+          
+        </ul>
+      </li>
+      <div class="dropdown-divider"></div>
+      <!--Other links-->
+
+      <!--contact-->
+      <li class="nav-item">
+        <a href="{% url 'admin_contact' %}" class="nav-link {% if request.path == '/admin_contact' %}active{% endif %}">
+          <i class="nav-icon nav-icon fas fa-book"></i>
+          <p>
+           Contact
+          </p>
+        </a>
+        
+      </li>
+      <div class="dropdown-divider"></div>
+      <!--contact-->
+      <!--address-->
+      <li class="nav-item">
+        <a href="{% url 'address_path' %}" class="nav-link {% if request.path == '/address_path' %}active{% endif %}">
+          <i class="nav-icon nav-icon fas fa-book"></i>
+          <p>
+           Address
+          </p>
+        </a>
+        
+      </li>
+      <div class="dropdown-divider"></div>
+      <!--address-->
+
+      <!--Logout-->
+      <li class="nav-item" style="background-color: rgb(244, 41, 41);color: white;font-weight: bolder;">
+        <a href="{% url 'logoutUser' %}" class="nav-link">
+          <i class="nav-icon nav-icon fas fa-book"></i>
+          <p>
+          Logout
+          </p>
+        </a>
+        
+      </li>
+      <div class="dropdown-divider"></div>
+      <!--logout-->
+    </ul>
+
+
+  </nav>
+  <!-- /.sidebar-menu -->
+</div>
