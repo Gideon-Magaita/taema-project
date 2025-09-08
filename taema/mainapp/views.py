@@ -147,3 +147,34 @@ def downloads(request):
 def projects(request):
     partner = Partner.objects.all()
     return render(request,'pages/users/projects.html',{'partner':partner})
+
+##membership form###
+def individual_form(request):
+    if request.method == 'POST':
+        form = IndividualForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Data submitted successfully')
+        else:
+            messages.info(request,'Something went wrong!')
+        return redirect('individual_form')
+    else:
+        form = IndividualForm()
+    
+    return render(request,'pages/users/individual-form.html', {'form': form})
+
+
+
+def organization_form(request):
+    if request.method == 'POST':
+        form = OrganizationForm(request.POST,request.FILES or None)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Data submitted successfully')
+        else:
+            messages.info(request,'Something went wrong!')
+        return redirect('organization_form')
+    else:
+        form = OrganizationForm()
+    
+    return render(request,'pages/users/organization-form.html', {'form': form})

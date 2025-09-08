@@ -1,0 +1,159 @@
+{% extends 'pages/users/main.html' %}
+{% block content %}
+{% load static %}
+<style>
+.about-page {
+    background: url('{% static "assets/img/bg1.jpg" %}') no-repeat center center;
+}
+</style>
+
+<!-- Page Title -->
+<div class="page-title about-page" data-aos="fade">
+  <div class="heading">
+    <div class="container">
+      <div class="row d-flex justify-content-center text-center">
+        <div class="col-lg-8">
+          <h1>Organization Membership Form</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <nav class="breadcrumbs">
+    <div class="container">
+      <ol>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li class="current">Organization Membership Form</li>
+      </ol>
+    </div>
+  </nav>
+</div><!-- End Page Title -->
+
+<!-- About Section -->
+<section id="about" class="about section">
+  {% include 'message.html' %}
+  <div class="container-fluid p-5">
+    <div class="row gy-4">
+
+      <!-- Organization Form -->
+      <div class="col-lg-8 content" data-aos="fade-up" data-aos-delay="100">
+        <h3 class="mb-4">Organization Membership Form</h3>
+
+        <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+
+          <!-- Row 1: Organization Name & City -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              {{ form.organization_name.label_tag }} {{ form.organization_name }}
+            </div>
+            <div class="col-md-6">
+              {{ form.city.label_tag }} {{ form.city }}
+            </div>
+          </div>
+
+          <!-- Row 2: Email & Mobile Number -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              {{ form.email.label_tag }} {{ form.email }}
+            </div>
+            <div class="col-md-6">
+              {{ form.mobile_number.label_tag }} {{ form.mobile_number }}
+            </div>
+          </div>
+
+          <!-- Row 3: Address & Category -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              {{ form.address.label_tag }} {{ form.address }}
+            </div>
+           <div class="mb-3">
+            <label class="form-label">Category of the organization</label>
+                <div class="row">
+                    {% for checkbox in form.category %}
+                    <div class="col-md-6 form-check">
+                        {{ checkbox.tag }} {{ checkbox.choice_label }}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+          </div>
+
+          <!-- Row 4: Employees & Representative Name -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              {{ form.number_of_existing_employees.label_tag }} {{ form.number_of_existing_employees }}
+            </div>
+            <div class="col-md-6">
+              {{ form.name_of_the_organization_representative.label_tag }} {{ form.name_of_the_organization_representative }}
+            </div>
+          </div>
+
+          <!-- Row 5: Rep Email & Rep Mobile -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              {{ form.email_the_representative.label_tag }} {{ form.email_the_representative }}
+            </div>
+            <div class="col-md-6">
+              {{ form.mobile_number_of_representative.label_tag }} {{ form.mobile_number_of_representative }}
+            </div>
+          </div>
+
+          <!-- Motivation -->
+          <div class="mb-3">
+            {{ form.describe_the_motivation_to_join_the_association.label_tag }} {{ form.describe_the_motivation_to_join_the_association }}
+          </div>
+
+          <!-- Expectations -->
+          <div class="mb-3">
+            {{ form.what_are_the_organization_expectations_once_you_join_the_association.label_tag }} {{ form.what_are_the_organization_expectations_once_you_join_the_association }}
+          </div>
+
+          <!-- Upload Company Profile -->
+          <div class="mb-3">
+            {{ form.upload_Company_Profile.label_tag }} {{ form.upload_Company_Profile }}
+          </div>
+
+          <!-- Membership Category -->
+          <div class="mb-3">
+            <label class="form-label">{{ form.membership_Category.label }}</label>
+            <div class="row">
+                {% for checkbox in form.membership_Category %}
+                <div class="col-md-6 form-check">
+                    {{ checkbox.tag }} {{ checkbox.choice_label }}
+                </div>
+                {% endfor %}
+            </div>
+            </div>
+
+          <!-- Terms Agreement -->
+          <div class="mb-3">
+            <label class="form-label">Do you agree to the terms and constitution of the organization?</label>
+            <div class="row">
+              {% for radio in form.terms_and_constitution_of_the_organization %}
+                <div class="col-md-6 form-check">
+                  {{ radio.tag }} {{ radio.choice_label }}
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="mb-3 text-end">
+            <button type="submit" class="btn btn-primary form-control">Submit</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Image Section -->
+      <div class="col-md-4 d-flex align-items-stretch">
+        <img src="{% static 'assets/img/slider2.jpg' %}" alt="image" 
+             style="border-top-right-radius:70px; border-bottom-left-radius:70px; width:100%; object-fit:cover;" 
+             class="img-fluid w-100 h-100">
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- /About Section -->
+
+{% endblock %}

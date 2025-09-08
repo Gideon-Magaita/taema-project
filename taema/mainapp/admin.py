@@ -19,5 +19,10 @@ admin.site.register([
     Partner,
     Contact,
     Visitor,
-    Downloads
+    Downloads,
+    Specialization,
+    Individual,
+    Organization,
+    CategoryModel,
+    CategoryMembership
 ])

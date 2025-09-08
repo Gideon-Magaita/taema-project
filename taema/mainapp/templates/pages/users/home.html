@@ -26,14 +26,28 @@
   
       <!-- Services Section -->
       <section id="services" class="services section  service-page">
-        <!-- Section Title -->
+        
          {% for n in note %}
-        <div class="container section-title" data-aos="fade-up">
+        <div class="container section-title" data-aos="fade-up"><!-- Section Title -->
           <h2>Welcome Note</h2>
-          <p>{{ n.title | safe }}</p>
+          <div class="row">
+            <div class="col-md-6">
+              <img src="{{n.image.url}}" alt="image" 
+              style="
+              border-top-right-radius:70px; 
+              border-bottom-left-radius:70px;
+              height:550px;
+              width:550px;
+              "
+              class="img img-fluid" 
+              >
+            </div>
+            <div class="col-md-6">
+               <p style="text-align:justify;">{{ n.title | safe }}</p>
+            </div>
+          </div>
         </div><!-- End Section Title -->
          {% endfor %}
-
         <div class="container section-title">
           <h2>Our Activities</h2>
           <div class="row gy-4">
@@ -41,7 +55,7 @@
             <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
               <div class="service-item  position-relative">
                 <div class="icon">
-                  <i class="bi bi-activity"></i>
+                  <i class="bi bi-bell"></i>
                 </div>
                 <a href="#" class="stretched-link">
                   <h3>{{ a.title }}</h3>

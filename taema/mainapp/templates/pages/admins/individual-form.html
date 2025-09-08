@@ -1,0 +1,86 @@
+
+{% extends 'pages/admins/main.html' %}
+{% block content %}
+<div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <!-- <h1 class="m-0">Who Are We</h1> -->
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="{% url 'admin_home' %}">Home</a></li>
+            <li class="breadcrumb-item active">Individual Membership Form</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12 col-md-6 col-sm-3">
+          <div class="card shadow">
+            <div class="card-header">
+              <h2>Individual Membership Form</h2>
+            </div>
+            <div class="card-body">
+              <!--table-->
+              <div class="table-responsive animate__animated animate__fadeIn">
+                <table id="mytable" class="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                      <th>Full Name</th>
+                      <th>City</th>
+                      <th>Email</th>
+                      <th>Mobile Number</th>
+                      <th>ID Number</th>
+                      <th>Area of specialization</th>
+                      <th>Name of the organization</th>
+                      <th>Year of experience in E-Mobility Sector</th>
+                      <th>Registration fee</th>
+                      <th>Annual membership subscription</th>
+                      <th>Contribution toward growing of E-Mobility space</th>
+                      <th>Your expectations</th>
+                      <th>Agree?</th>
+                      <th>Introduce your organization to TAEMA?</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for i in  individuals %}
+                      <tr>
+                          <td>{{ i.full_name }}</td>
+                          <td>{{ i.city }}</td>
+                          <td>{{ i.email }}</td>
+                          <td>{{ i.mobile_number }}</td>
+                          <td>{{ i.id_number }}</td>
+                          <td>{{ i.area_of_specialization }}</td>
+                          <td>{{ i.name_of_the_organization }}</td>
+                          <td>{{ i.number_of_year_of_experience_in_emobility_sector }}</td>
+                          <td>{{ i.registration_fee }}</td>
+                          <td>{{ i.annual_membership_subscription }}</td>
+                          <td>{{ i.describe_your_contribution }}</td>
+                          <td>{{ i.what_are_the_individual_expectations }}</td>
+                          <td>{{ i.i_agree }}</td>
+                          <td>{{ i.introduce}}</td>
+                          <td style="display:flex;">
+                              <a href="" class="btn btn-success" style="margin-right: 10px;">View</a>
+                          </td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <!--table-->
+            </div>
+          </div>
+        </div>
+      </div>
+  
+    </div><!--/. container-fluid -->
+  </section>
+{% endblock %}

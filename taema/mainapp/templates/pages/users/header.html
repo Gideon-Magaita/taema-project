@@ -26,6 +26,12 @@
                     <li><a href="{% url 'projects' %}">Projects and Partnership</a></li>
                 </ul>
                 </li>
+                <li class="dropdown"><a href="#"><span>Join Us</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <ul>
+                    <li><a href="{% url 'individual_form' %}">Individual Membership Form</a></li>
+                    <li><a href="{% url 'organization_form' %}">Organization Membership Form</a></li>
+                </ul>
+                </li>
                 <li><a href="{% url 'contact' %}" class="{% if request.path == '/contact'%}active{% endif %}">Contact Us</a></li>
             </ul>
             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>

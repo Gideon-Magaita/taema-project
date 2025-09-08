@@ -178,12 +178,7 @@
               <p>Photo Gallery</p>
             </a>
           </li>
-          <!-- <li class="nav-item">
-            <a href="" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-              <p>Work & Initiatives</p>
-            </a>
-          </li> -->
+
           <li class="nav-item">
             <a href="{% url 'project_partner' %}" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
@@ -195,7 +190,46 @@
       </li>
       <div class="dropdown-divider"></div>
       <!--Other links-->
-
+      <li class="nav-item">
+        <a href="{% url 'specialization_area' %}" class="nav-link {% if request.path == '/specialization_area' %}active{% endif %}">
+          <i class="nav-icon nav-icon fas fa-book"></i>
+          <p>
+           Specialization
+          </p>
+        </a>
+        
+      </li>
+      <div class="dropdown-divider"></div>
+         <!--membership form links-->
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="nav-icon fas fa-book"></i>
+          <p>
+           Join Us
+            <i class="fas fa-angle-left right"></i>
+          </p>
+        </a>
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="{% url 'Individual_membership' %}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>
+                Individual Membership Form
+              </p>
+            </a>
+          </li>
+         
+          <li class="nav-item">
+            <a href="{% url 'organization_membership' %}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Organization Membership Form</p>
+            </a>
+          </li>
+          
+        </ul>
+      </li>
+      <div class="dropdown-divider"></div>
+      <!--membership form links-->
       <!--contact-->
       <li class="nav-item">
         <a href="{% url 'admin_contact' %}" class="nav-link {% if request.path == '/admin_contact' %}active{% endif %}">

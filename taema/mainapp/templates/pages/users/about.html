@@ -38,10 +38,32 @@
               {{ w.description | safe }}
             </p>
           </div>
+          <div class="col-md-4">
+            <img src="{{w.image.url}}" alt="image" 
+              style="
+              border-top-right-radius:70px; 
+              border-bottom-left-radius:70px;
+              height:400px;
+              width:400px;
+              "
+              class="img img-fluid" 
+              >
+          </div>
           {% endfor %}
 
           <!--mission and vision-->
           {% for mis in content %}
+          <div class="col-md-4">
+            <img src="{{mis.image.url}}" alt="image" 
+              style="
+              border-top-right-radius:70px; 
+              border-bottom-left-radius:70px;
+              height:400px;
+              width:400px;
+              "
+              class="img img-fluid" 
+              >
+          </div>
           <div class="col-lg-8 content" data-aos="fade-up" data-aos-delay="100">
             <p class="who-we-are">{{ mis.title }}</p>
             <p style="text-align: justify;">
@@ -58,11 +80,33 @@
             </p>
             
           </div>
+          <div class="col-md-4">
+            <img src="{{v.image.url}}" alt="image" 
+              style="
+              border-top-right-radius:70px; 
+              border-bottom-left-radius:70px;
+              height:400px;
+              width:400px;
+              "
+              class="img img-fluid" 
+              >
+          </div>
           {% endfor %}
           <!--mission and vision-->
 
           <!--objectives-->
           {% for obj in objective %}
+          <div class="col-md-4">
+            <img src="{{obj.image.url}}" alt="image" 
+              style="
+              border-top-right-radius:70px; 
+              border-bottom-left-radius:70px;
+              height:400px;
+              width:400px;
+              "
+              class="img img-fluid" 
+              >
+          </div>
           <div class="col-lg-8 content" data-aos="fade-up" data-aos-delay="100">
             <p class="who-we-are">{{ obj.title }}</p>
             <p style="text-align: justify;">

@@ -17,6 +17,8 @@ urlpatterns=[
     path('projects',views.projects,name='projects'),
     path('working_groups',views.working_groups,name='working_groups'),
     path('photo_gall',views.photo_gall,name='photo_gall'),
+    path('individual-form',views.individual_form,name='individual_form'),
+    path('organization_form',views.organization_form,name='organization_form'),
     #authenticationurls
     path('login_user', admins.login_user,name='login_user'),
     path('logoutUser', admins.logoutUser,name='logoutUser'),
@@ -94,7 +96,14 @@ urlpatterns=[
     path('file_downloads',admins.file_downloads,name='file_downloads'),
     path('delete_file_download/<int:id>',admins.delete_file_download,name='delete_file_download'),
     path('edit_file_download/<int:id>',admins.edit_file_download,name='edit_file_download'),
-
+    #area of specialization path
+    path('specialization-area',admins.specialization_area,name='specialization_area'),
+    path('edit-specialization-area/<int:id>',admins.edit_specialization_area,name='edit_specialization_area'),
+    path('delete_specialization-area/<int:id>',admins.delete_specialization_area,name='delete_specialization_area'),
+    #membership forms
+    path('individual-membership',admins.Individual_membership,name='Individual_membership'),
+    path('organization_membership',admins.organization_membership,name='organization_membership'),
+    
 
 
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

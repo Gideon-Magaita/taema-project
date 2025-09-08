@@ -1,4 +1,8 @@
 from encodings.punycode import T
+from sre_parse import CATEGORIES
+from tkinter.tix import Tree
+from turtle import mode
+from unicodedata import category
 from django.db import models
 from ckeditor.fields import RichTextField
 from django.core.validators import RegexValidator
@@ -12,6 +16,7 @@ class Slider(models.Model):
     
 
 class WelcomeNote(models.Model):
+    image = models.ImageField(max_length=200,upload_to='images/',null=True,blank=True)
     title = RichTextField()
 
     def __str__(self):
@@ -49,6 +54,7 @@ class Comment(models.Model):
 
 #about page models
 class WhoAreWe(models.Model):
+    image = models.ImageField(max_length=200,blank=True,null=True,upload_to='images/')
     title = models.CharField(max_length=200,default='Who Are We')
     description = RichTextField()
     date = models.DateField(auto_now_add=True)
@@ -57,6 +63,7 @@ class WhoAreWe(models.Model):
         return self.title
 
 class Mission(models.Model):
+    image = models.ImageField(max_length=200,blank=True,null=True,upload_to='images/')
     title = models.CharField(max_length=200,default='Mission')
     description = RichTextField()
     date = models.DateField(auto_now_add=True)
@@ -65,6 +72,7 @@ class Mission(models.Model):
         return self.title
 
 class Vision(models.Model):
+    image = models.ImageField(max_length=200,blank=True,null=True,upload_to='images/')
     title = models.CharField(max_length=200,default='Vision')
     description = RichTextField()
     date = models.DateField(auto_now_add=True)
@@ -73,6 +81,7 @@ class Vision(models.Model):
         return self.title
 
 class Objective(models.Model):
+    image = models.ImageField(max_length=200,blank=True,null=True,upload_to='images/')
     title = models.CharField(max_length=200,default='Objectives')
     description = RichTextField()
     date = models.DateField(auto_now_add=True)
@@ -181,3 +190,84 @@ class Downloads(models.Model):
 
     def __str__(self):
         return self.description
+
+######Individual Membership######
+class Specialization(models.Model):
+    area_name = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.area_name
+FEE_CHOICES = [
+    ('Tsh.5,000', 'Tsh.5,000'),
+]
+
+ANNUAL_FEE_CHOICES = [
+    ('Tsh.10,000 1 Year', 'Tsh.10,000 1 Year'),
+    ('Tsh.20,000 2 Year', 'Tsh.20,000 2 Year'),
+    ('Tsh.30,000 3 Year', 'Tsh.30,000 3 Year'),
+]
+Agree=[
+    ('yes','Yes'),
+    ('no','No'),
+]
+class Individual(models.Model):
+    full_name = models.CharField(max_length=200)
+    city = models.CharField(max_length=200)
+    email  = models.EmailField(max_length=200)
+    mobile_number = models.CharField(max_length=13)
+    id_number = models.CharField(max_length=200)
+    area_of_specialization = models.ForeignKey(Specialization,on_delete=models.CASCADE,blank=Tree,null=True)
+    name_of_the_organization = models.CharField(max_length=200)
+    number_of_year_of_experience_in_emobility_sector = models.IntegerField()
+    registration_fee = models.CharField(max_length=20,choices=FEE_CHOICES)
+    annual_membership_subscription = models.CharField(max_length=20,choices=ANNUAL_FEE_CHOICES)
+    describe_your_contribution = models.TextField()
+    what_are_the_individual_expectations= models.TextField()
+    i_agree = models.CharField(max_length=20,choices=Agree)
+    introduce = models.CharField(max_length=20,choices=Agree)
+
+    def __str__(self):
+        return self.full_name
+
+
+
+######Organization Membership######
+class CategoryModel(models.Model):
+    category = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.category
+
+
+class CategoryMembership(models.Model):
+    category = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.category
+
+
+TERMS=[
+    ('yes','yes'),
+    ('no','no'),
+]
+
+class Organization(models.Model):
+    organization_name = models.CharField(max_length=200)
+    city = models.CharField(max_length=200)
+    email  = models.EmailField(max_length=200)
+    mobile_number = models.CharField(max_length=13)
+    address = models.CharField(max_length=200)
+    category = models.ManyToManyField(CategoryModel)
+    number_of_existing_employees = models.IntegerField()
+    name_of_the_organization_representative = models.CharField(max_length=200)
+    email_the_representative  = models.EmailField(max_length=200)
+    mobile_number_of_representative = models.CharField(max_length=13)
+    describe_the_motivation_to_join_the_association= models.TextField()
+    what_are_the_organization_expectations_once_you_join_the_association = models.TextField()
+    upload_Company_Profile = models.FileField(upload_to='images/')
+    membership_Category = models.ManyToManyField(CategoryMembership)
+    terms_and_constitution_of_the_organization = models.CharField(max_length=200,choices=TERMS)
+
+
+    def __str__(self):
+        return self.organization_name

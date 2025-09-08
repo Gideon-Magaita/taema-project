@@ -12,7 +12,7 @@ from django.contrib.auth.forms  import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .decorators import unauthenticated_user,allowed_users,admin_only
-
+# from django.views.decorators.cache import never_cache
 
 #authentication functions
 @unauthenticated_user
@@ -122,7 +122,7 @@ def delete_sliders(request,id):
 def welcome_note(request):
     welcome = WelcomeNote.objects.all()
     if request.method == 'POST':
-        form = WelcomeNoteForm(request.POST or None)
+        form = WelcomeNoteForm(request.POST or None,request.FILES or None)
         if form.is_valid():
             form.save()
             messages.success(request,'Welcome note saved successfully')
@@ -144,12 +144,13 @@ def welcome_note(request):
 def edit_welcome_note(request,id):
     welcome = WelcomeNote.objects.get(id=id)
     if request.method == 'POST':
-        form = WelcomeNoteForm(request.POST or None,instance=welcome)
+        form = WelcomeNoteForm(request.POST or None,request.FILES or None,instance=welcome)
         if form.is_valid():
             form.save()
             messages.success(request,'Welcome note updated!')
         else:
             messages.error(request,'Something went wrong')
+        return redirect('welcome_note')
     else:
         form = WelcomeNoteForm(instance=welcome)
     context={
@@ -349,7 +350,7 @@ def delete_comment_function(request,id):
 def who_are_we(request):
     content = WhoAreWe.objects.all()
     if request.method == 'POST':
-        form = WhoAreWeForm(request.POST or None)
+        form = WhoAreWeForm(request.POST or None,request.FILES or None)
         if form.is_valid():
             form.save()
             messages.success(request,'Content saved successfully')
@@ -371,7 +372,7 @@ def who_are_we(request):
 def edit_who_are_we(request,id):
     content = WhoAreWe.objects.get(id=id)
     if request.method == 'POST':
-        form = WhoAreWeForm(request.POST or None,instance=content)
+        form = WhoAreWeForm(request.POST or None,request.FILES or None,instance=content)
         if form.is_valid():
             form.save()
             messages.success(request,'Content saved successfully')
@@ -405,7 +406,7 @@ def delete_who_are_we(request,id):
 def mission_function(request):
     content = Mission.objects.all()
     if request.method == 'POST':
-        form = MissionForm(request.POST or None)
+        form = MissionForm(request.POST or None,request.FILES or None)
         if form.is_valid():
             form.save()
             messages.success(request,'Mission saved successfully')
@@ -428,7 +429,7 @@ def mission_function(request):
 def edit_mission(request,id):
     content = Mission.objects.get(id=id)
     if request.method == 'POST':
-        form = MissionForm(request.POST or None,instance=content)
+        form = MissionForm(request.POST or None,request.FILES or None,instance=content)
         if form.is_valid():
             form.save()
             messages.success(request,'Mission saved successfully')
@@ -464,7 +465,7 @@ def delete_mission(request,id):
 def vision_function(request):
     content = Vision.objects.all()
     if request.method == 'POST':
-        form = VisionForm(request.POST or None)
+        form = VisionForm(request.POST or None,request.FILES or None)
         if form.is_valid():
             form.save()
             messages.success(request,'Vision saved successfully')
@@ -486,7 +487,7 @@ def vision_function(request):
 def edit_vision(request,id):
     content = Vision.objects.get(id=id)
     if request.method == 'POST':
-        form = VisionForm(request.POST or None,instance=content)
+        form = VisionForm(request.POST or None,request.FILES or None,instance=content)
         if form.is_valid():
             form.save()
             messages.success(request,'Vision saved successfully')
@@ -520,7 +521,7 @@ def delete_vision(request,id):
 def objective_function(request):
     content = Objective.objects.all()
     if request.method == 'POST':
-        form = ObjectiveForm(request.POST or None)
+        form = ObjectiveForm(request.POST or None,request.FILES or None)
         if form.is_valid():
             form.save()
             messages.success(request,'Objective saved successfully')
@@ -542,7 +543,7 @@ def objective_function(request):
 def edit_objective(request,id):
     content = Objective.objects.get(id=id)
     if request.method == 'POST':
-        form = ObjectiveForm(request.POST or None,instance=content)
+        form = ObjectiveForm(request.POST or None,request.FILES or None,instance=content)
         if form.is_valid():
             form.save()
             messages.success(request,'Objective saved successfully')
@@ -599,7 +600,7 @@ def news_update(request):
 def edit_news_update(request,id):
     news = News.objects.get(id=id)
     if request.method == 'POST':
-        form = NewsForm(request.POST or None,instance=news)
+        form = NewsForm(request.POST or None,request.FILES or None,instance=news)
         if form.is_valid():
             form.save()
             messages.success(request,'News updated successfully')
@@ -1028,3 +1029,61 @@ def delete_file_download(request,id):
     else:
         messages.error(request,'File deleted!')
     return redirect('file_downloads')
+
+
+def specialization_area(request):
+    if request.method=='POST':
+        form = SpecializationForm(request.POST or None)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Data added successfuly!')
+        else:
+            messages.error(request,'Someting went wrong!')
+        return redirect('specialization_area')
+    else:
+        form = SpecializationForm()
+    spec = Specialization.objects.all()
+    context={
+        'form':form,
+        'spec':spec,
+    }
+    return render(request,'pages/admins/specialization.html',context)
+
+
+def edit_specialization_area(request,id):
+    spec = Specialization.objects.get(id=id)
+    if request.method=='POST':
+        form = SpecializationForm(request.POST or None,instance=spec)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Data updated successfuly!')
+        else:
+            messages.error(request,'Someting went wrong!')
+        return redirect('specialization_area')
+    else:
+        form = SpecializationForm(instance=spec)
+    context={
+        'form':form,
+    }
+    return render(request,'pages/admins/edit-specialization.html',context)
+
+
+
+def delete_specialization_area(request,id):
+    files = Specialization.objects.get(id=id)
+    files.delete()
+    if files:
+        messages.success(request,'Data deleted successfully')
+    else:
+        messages.error(request,'Data deleted!')
+    return redirect('specialization_area')
+
+
+def Individual_membership(request):
+    indi = Individual.objects.all()
+    return render(request,'pages/admins/individual-form.html',{'individuals':indi})
+
+
+def organization_membership(request):
+    organizations = Organization.objects.all()
+    return render(request, 'pages/admins/organization-form.html', {'organizations': organizations})

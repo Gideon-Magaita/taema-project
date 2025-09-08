@@ -1,0 +1,167 @@
+{% extends 'pages/users/main.html' %}
+{% block content %}
+{% load static %}
+<style>
+.about-page{
+    background: url('{% static "assets/img/bg1.jpg" %}') no-repeat center center;
+  }
+</style>
+    <!-- Page Title -->
+    <div class="page-title about-page" data-aos="fade">
+      <div class="heading">
+        <div class="container">
+          <div class="row d-flex justify-content-center text-center">
+            <div class="col-lg-8">
+              <h1>Individual Membership Form</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+      <nav class="breadcrumbs">
+        <div class="container">
+          <ol>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li class="current">Individual  Membership Form</li>
+          </ol>
+        </div>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+        <!--messages-->
+          {% include 'message.html' %}
+          <!--messages-->
+  <div class="container-fluid p-5">
+    <div class="row gy-4">
+      
+      <!-- Individual Form -->
+      <div class="col-lg-8 content" data-aos="fade-up" data-aos-delay="100">
+        <h3 class="mb-4">Individual Membership Form</h3>
+
+        <form method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <!-- Row 1: Full Name & City -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+            {{ form.full_name.label_tag }} {{ form.full_name }}
+            </div>
+            <div class="col-md-6">
+            {{ form.city.label_tag }} {{ form.city }}
+            </div>
+        </div>
+
+        <!-- Row 2: Email & Mobile Number -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+            {{ form.email.label_tag }} {{ form.email }}
+            </div>
+            <div class="col-md-6">
+            {{ form.mobile_number.label_tag }} {{ form.mobile_number }}
+            </div>
+        </div>
+
+        <!-- Row 3: ID Number & Area of Specialization -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+            {{ form.id_number.label_tag }} {{ form.id_number }}
+            </div>
+            <div class="col-md-6">
+            {{ form.area_of_specialization.label_tag }} {{ form.area_of_specialization }}
+            </div>
+        </div>
+
+        <!-- Row 4: Organization Name & Years of Experience -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+            {{ form.name_of_the_organization.label_tag }} {{ form.name_of_the_organization }}
+            </div>
+            <div class="col-md-6">
+            {{ form.number_of_year_of_experience_in_emobility_sector.label_tag }} {{ form.number_of_year_of_experience_in_emobility_sector }}
+            </div>
+        </div>
+
+        <!-- Registration Fee -->
+        <div class="mb-3">
+            <label class="form-label">Registration Fee</label>
+            <div class="row">
+            {% for radio in form.registration_fee %}
+                <div class="col-md-6 form-check">
+                {{ radio.tag }} {{ radio.choice_label }}
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+
+        <!-- Annual Membership Subscription -->
+        <div class="mb-3">
+            <label class="form-label">Annual Membership Subscription</label>
+            <div class="row">
+            {% for radio in form.annual_membership_subscription %}
+                <div class="col-md-6 form-check">
+                {{ radio.tag }} {{ radio.choice_label }}
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+
+        <!-- Describe Contribution -->
+        <div class="mb-3">
+            {{ form.describe_your_contribution.label_tag }} {{ form.describe_your_contribution }}
+        </div>
+
+        <!-- Expectations -->
+        <div class="mb-3">
+            {{ form.what_are_the_individual_expectations.label_tag }} {{ form.what_are_the_individual_expectations }}
+        </div>
+
+        <!-- I Agree -->
+        <div class="mb-3">
+            <label class="form-label">Do you agree to terms?</label>
+            <div class="row">
+            {% for radio in form.i_agree %}
+                <div class="col-md-6 form-check">
+                {{ radio.tag }} {{ radio.choice_label }}
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+
+        <!-- Introduce -->
+        <div class="mb-3">
+            <label class="form-label">Are you willing to introduce others?</label>
+            <div class="row">
+            {% for radio in form.introduce %}
+                <div class="col-md-6 form-check">
+                {{ radio.tag }} {{ radio.choice_label }}
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="mb-3 text-end">
+            <button type="submit" class="btn btn-primary form-control">Submit</button>
+        </div>
+        </form>
+      </div>
+
+      <!-- Image Section -->
+      <div class="col-md-4 d-flex align-items-stretch">
+        <img src="{% static 'assets/img/slider2.jpg' %}" alt="image" 
+            style="
+            border-top-right-radius:70px; 
+            border-bottom-left-radius:70px;
+            width: 100%;
+            object-fit: cover;
+            "
+            class="img-fluid w-100 h-100"
+        >
+        </div>
+    </div>
+  </div>
+</section>
+
+    <!-- /About Section -->
+    {% endblock %}

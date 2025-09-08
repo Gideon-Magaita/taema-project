@@ -64,6 +64,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    #logoout without caching middleware
+    'mainapp.mymiddleware.NoCacheMiddleware',
 ]
 
 ROOT_URLCONF = 'taema.urls'

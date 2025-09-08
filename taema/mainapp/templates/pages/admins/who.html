@@ -67,6 +67,7 @@
                 <table id="mytable" class="table table-bordered table-striped">
                   <thead>
                     <tr>
+                      <th>Image</th>
                       <th>Title</th>
                       <th>Description</th>
                       <th>Actions</th>
@@ -75,6 +76,7 @@
                   <tbody>
                     {% for item in  content %}
                       <tr>
+                          <td><img src="{{ item.image.url }}" alt="" style="width: 100px;height: 70px;"></td>
                           <td>{{ item.title }}</td>
                           <td>{{ item.description | safe }}</td>
                           <td style="display:flex;">
