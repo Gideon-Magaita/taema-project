@@ -38,37 +38,25 @@
               {{ w.description | safe }}
             </p>
           </div>
-          <div class="col-md-4">
-            <img src="{{w.image.url}}" alt="image" 
-              style="
-              border-top-right-radius:70px; 
-              border-bottom-left-radius:70px;
-              height:400px;
-              width:400px;
-              "
-              class="img img-fluid" 
+          <div class="image-frame">
+            <img src="{{w.image.url}}" alt="image" class="img-fluid beautiful-image" 
               >
           </div>
           {% endfor %}
 
           <!--mission and vision-->
           {% for mis in content %}
-          <div class="col-md-4">
-            <img src="{{mis.image.url}}" alt="image" 
-              style="
-              border-top-right-radius:70px; 
-              border-bottom-left-radius:70px;
-              height:400px;
-              width:400px;
-              "
-              class="img img-fluid" 
-              >
-          </div>
-          <div class="col-lg-8 content" data-aos="fade-up" data-aos-delay="100">
-            <p class="who-we-are">{{ mis.title }}</p>
-            <p style="text-align: justify;">
-              {{ mis.description | safe }}
-            </p>
+          <div class="row align-items-center mb-5">
+            <div class="col-md-4 d-flex justify-content-center">
+              <div class="image-frame">
+                <img src="{{ mis.image.url }}" alt="{{ mis.title }}" class="img-fluid beautiful-image">
+              </div>
+            </div>
+
+            <div class="col-lg-8 content" data-aos="fade-up" data-aos-delay="100">
+              <h4 class="fw-bold text-uppercase" style="color: #059652;">{{ mis.title }}</h4>
+              <p style="text-align: justify;">{{ mis.description | safe }}</p>
+            </div>
           </div>
           {% endfor %}
           
@@ -80,15 +68,9 @@
             </p>
             
           </div>
-          <div class="col-md-4">
+          <div class="image-frame">
             <img src="{{v.image.url}}" alt="image" 
-              style="
-              border-top-right-radius:70px; 
-              border-bottom-left-radius:70px;
-              height:400px;
-              width:400px;
-              "
-              class="img img-fluid" 
+              class="img-fluid beautiful-image" 
               >
           </div>
           {% endfor %}
@@ -96,15 +78,9 @@
 
           <!--objectives-->
           {% for obj in objective %}
-          <div class="col-md-4">
+          <div class="image-frame">
             <img src="{{obj.image.url}}" alt="image" 
-              style="
-              border-top-right-radius:70px; 
-              border-bottom-left-radius:70px;
-              height:400px;
-              width:400px;
-              "
-              class="img img-fluid" 
+             class="img-fluid beautiful-image" 
               >
           </div>
           <div class="col-lg-8 content" data-aos="fade-up" data-aos-delay="100">

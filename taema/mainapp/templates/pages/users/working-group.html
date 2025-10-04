@@ -1,8 +1,7 @@
-
 {% extends 'pages/users/main.html' %}
 {% block content %}
 {% load static %}
-    <!-- Page Title -->
+<!-- Page Title -->
 <style>
 .service-item {
   background: url('{% static "assets/img/technology.jpg" %}') no-repeat center center;
@@ -10,7 +9,18 @@
   padding: 20px;
   border-radius: 10px;
   position: relative;
+
+  /* New styles for border */
+  border: 3px solid #4CAF50; /* Green border, you can change color */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* Soft shadow for depth */
+  transition: transform 0.3s, box-shadow 0.3s; /* Smooth hover effect */
 }
+
+.service-item:hover {
+  transform: translateY(-5px); /* Slight lift on hover */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3); /* More prominent shadow */
+}
+
 .working-page{
   background: url('{% static "assets/img/bg1.jpg" %}') no-repeat center center;
 }

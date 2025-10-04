@@ -22,7 +22,7 @@
   --background-color: #ffffff; /* Background color for the entire website, including individual sections */
   --default-color: #444444; /* Default color used for the majority of the text content across the entire website */
   --heading-color: #1b1b1b; /* Color for headings, subheadings and title throughout the website */
-  --accent-color: #2eca6a; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+  --accent-color: #059652; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
   --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
   --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
 }
@@ -34,7 +34,7 @@
   --nav-mobile-background-color: #ffffff; /* Used as the background color for mobile navigation menu */
   --nav-dropdown-background-color: #ffffff; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
   --nav-dropdown-color: #444444; /* Used for navigation links of the dropdown items in the navigation menu. */
-  --nav-dropdown-hover-color: #2eca6a; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
+  --nav-dropdown-hover-color: #059652; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
 }
 
 /* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
@@ -63,7 +63,7 @@
 body {
   color: var(--default-color);
   background-color: var(--background-color);
-  font-family: var(--default-font);
+  font-family:'Montserrat', sans-serif !important;
 }
 
 a {
@@ -84,8 +84,10 @@ h4,
 h5,
 h6 {
   color: var(--heading-color);
-  font-family: var(--heading-font);
+  font-family: 'Montserrat', sans-serif !important;
 }
+
+
 
 /* PHP Email Form Messages
 ------------------------------*/
@@ -139,10 +141,154 @@ h6 {
   }
 }
 
+/* ===== Activity Cards (Green Theme) ===== */
+.activity-card {
+  background: linear-gradient(135deg, #ffffff, #f4fef8);
+  border: 2px solid #dff5ea;
+  border-color: #059652;
+  border-radius: 20px;
+  height: 320px; /* fixed height for uniformity */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  padding: 25px 20px;
+  transition: all 0.4s ease-in-out;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 12px 25px rgba(5, 150, 82, 0.25);
+}
+
+/* Hover Lift Effect */
+.activity-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 25px rgba(5, 150, 82, 0.25);
+  border-color: #059652;
+  background: linear-gradient(135deg, #ffffff, #f4fef8);
+}
+
+/* Decorative Border Glow */
+.activity-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 2px;
+  background: linear-gradient(135deg, #059652, #4fe6a1);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+          mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+.activity-card:hover::before {
+  opacity: 1;
+}
+
+/* Title Styling */
+.activity-card h4 {
+  color: #000000;
+  font-weight: 700;
+  margin-top: 20px;
+  font-size: 1.2rem;
+  position: relative;
+  display: inline-block;
+}
+
+/* Underline Effect */
+.activity-card h4::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  height: 3px;
+  width: 100%;
+  background: #059652;
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease-in-out;
+}
+.activity-card:hover h4::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Description */
+.activity-card p {
+  color: #000000;
+  line-height: 1.6;
+  margin-top: 15px;
+
+  text-align: justify;
+  padding: 0 10px;
+  transition: color 0.3s ease;
+}
+
+/* Subtle text highlight on hover */
+.activity-card:hover p {
+  color: #064a2f;
+}
+/*End activity card style*/
+
+
+
+/* ====== Image Styling with Beautiful Borders ====== */
+.image-frame {
+  width: 400px;
+  height: 400px;
+  border-radius: 40px;
+  position: relative;
+  overflow: hidden;
+  padding: 5px;
+  background: linear-gradient(135deg, #059652, #4fe6a1);
+  transition: all 0.4s ease-in-out;
+  box-shadow: 0 4px 15px rgba(5, 150, 82, 0.25);
+}
+
+.beautiful-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 35px;
+  object-fit: cover;
+  transition: all 0.4s ease-in-out;
+  border: 3px solid #fff;
+}
+
+/* Hover effect: subtle zoom + glowing border */
+.image-frame:hover {
+  transform: scale(1.03);
+  box-shadow: 0 10px 25px rgba(5, 150, 82, 0.35);
+  background: linear-gradient(135deg, #4fe6a1, #059652);
+}
+
+.image-frame:hover .beautiful-image {
+  transform: scale(1.05);
+}
+
+/* Optional: Responsive adjustment for smaller screens */
+@media (max-width: 768px) {
+  .image-frame {
+    width: 100%;
+    height: auto;
+  }
+  .beautiful-image {
+    height: auto;
+  }
+}
+/*image styling end*/
+
+
+
+
 /* top-header styling */
 .top-header {
   width: 100%;
-  background-color: #2eca6a;
+  background-color: #059652;
   padding: 10px 0; /* Add padding for better spacing */
   position: fixed; /* Fix it at the top */
   top: 0;
@@ -238,7 +384,7 @@ body {
     color: var(--nav-color);
     font-size: 16px;
     padding: 0 2px;
-    font-family: var(--nav-font);
+    font-family: 'Montserrat', sans-serif !important;
     font-weight: 600;
     display: flex;
     align-items: center;
@@ -375,7 +521,7 @@ body {
   .navmenu a:focus {
     color: var(--nav-dropdown-color);
     padding: 10px 20px;
-    font-family: var(--nav-font);
+    font-family:'Montserrat', sans-serif !important;
     font-size: 17px;
     font-weight: 500;
     display: flex;
@@ -470,14 +616,14 @@ body {
 --------------------------------------------------------------*/
 .footer {
   color: var(--default-color);
-  background-color: var(--background-color);
+  background-color:#059652;
   font-size: 14px;
   padding: 40px 0 0 0;
   position: relative;
 }
 
 .footer .icon {
-  color: var(--accent-color);
+  color:#fff;
   margin-right: 15px;
   font-size: 24px;
   line-height: 0;
@@ -485,45 +631,49 @@ body {
 
 .footer h4 {
   font-size: 16px;
+  color:#fff;
   font-weight: 700;
   margin-bottom: 15px;
 }
 
 .footer .address p {
   margin-bottom: 0px;
+  color:#fff;
 }
 
 .footer .social-links a {
   display: flex;
   align-items: center;
+  color:#fff;
   justify-content: center;
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 1px solid color-mix(in srgb, var(--default-color), transparent 50%);
+  border: 2px solid color-mix(in srgb,#fff, transparent 0%);
   font-size: 16px;
-  color: color-mix(in srgb, var(--default-color), transparent 50%);
   margin-right: 10px;
   transition: 0.3s;
 }
 
 .footer .social-links a:hover {
-  color: var(--accent-color);
-  border-color: var(--accent-color);
+  color:#fff;
+  border-color:#ffff;
 }
 
 .footer .copyright {
   padding: 25px 0;
-  border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+  border-top: 3px solid color-mix(in srgb, #fff, transparent 0%);
 }
 
 .footer .copyright p {
   margin-bottom: 0;
+  color:#fff;
 }
 
 .footer .credits {
   margin-top: 5px;
   font-size: 13px;
+  color:#fff;
 }
 
 /*--------------------------------------------------------------
@@ -765,7 +915,7 @@ section,
 
 .hero .btn-get-started {
   color: var(--contrast-color);
-  font-family: var(--heading-font);
+  font-family:'Montserrat', sans-serif !important;
   font-weight: 600;
   font-size: 18px;
   letter-spacing: 1px;
@@ -1087,7 +1237,7 @@ section,
 .about .content .read-more {
   background: var(--accent-color);
   color: var(--contrast-color);
-  font-family: var(--heading-font);
+  font-family:'Montserrat', sans-serif !important;
   font-weight: 500;
   font-size: 16px;
   letter-spacing: 1px;
@@ -1145,7 +1295,7 @@ section,
 .stats .stats-item p {
   padding: 0;
   margin: 0;
-  font-family: var(--heading-font);
+  font-family:'Montserrat', sans-serif !important;
   font-size: 16px;
 }
 

@@ -7,6 +7,17 @@ from ckeditor.widgets import CKEditorWidget
 #auth imports
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User, Group
+from django.contrib.auth.forms import PasswordChangeForm
+
+
+
+class PasswordChangeCustomForm(PasswordChangeForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control'
+
+
 
 
 class SliderForm(ModelForm):
@@ -415,7 +426,7 @@ class OrganizationForm(forms.ModelForm):
             }),
             "upload_Company_Profile": forms.ClearableFileInput(attrs={
                 "class": "form-control",
-                "required": "required",
+                "required": "required",'accept': '.pdf,.docx,.xlsx,.xls'
             }),
             "membership_Category": forms.CheckboxSelectMultiple(attrs={
                 "class": "form-check-input",

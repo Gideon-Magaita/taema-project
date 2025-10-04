@@ -3,6 +3,10 @@ from .import views
 from django.conf import settings
 from django.conf.urls.static import static 
 from .import admins
+#change password imports
+from .admins import CustomPasswordChangeView
+from django.contrib.auth import views as auth_views
+from django.contrib.auth.decorators import login_required
 
 urlpatterns=[
     path('',views.home,name='home'),
@@ -22,7 +26,17 @@ urlpatterns=[
     #authenticationurls
     path('login_user', admins.login_user,name='login_user'),
     path('logoutUser', admins.logoutUser,name='logoutUser'),
+    #change password
+    path('change-password/', CustomPasswordChangeView.as_view(), name='change_password'),
+    path('change-password/', 
+         login_required(auth_views.PasswordChangeView.as_view(
+             template_name='pages/admins/change-password.html'
+         )), 
+         name='change_password'),
 
+    path('password-change-done/', 
+         auth_views.PasswordChangeDoneView.as_view(template_name='pages/admins/password_change_done.html'), 
+         name='password_change_done'),
     #adminurls
     path('admin_home',admins.admin_home,name='admin_home'),
     #sliders

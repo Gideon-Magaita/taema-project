@@ -10,7 +10,7 @@
                       <img src="{{ item.image.url }}" alt="{{ item.title }}">
                       <div class="carousel-container">
                           <div>
-                              <p>{{ item.title | safe }}</p>
+                              <p style="margin-top:35%;">{{ item.title | safe }}</p>
                           </div>
                       </div>
                   </div>{% endfor %}
@@ -29,18 +29,18 @@
         
          {% for n in note %}
         <div class="container section-title" data-aos="fade-up"><!-- Section Title -->
-          <h2>Welcome Note</h2>
+          <h2 style="color: #059652; letter-spacing: 1px;margin-bottom:5%;">Welcome Note</h2>
           <div class="row">
             <div class="col-md-6">
-              <img src="{{n.image.url}}" alt="image" 
+              <img src="{{ n.image.url }}" alt="image" 
               style="
-              border-top-right-radius:70px; 
-              border-bottom-left-radius:70px;
-              height:550px;
-              width:550px;
+                border-top-right-radius:70px; 
+                border-bottom-left-radius:70px;
+                height:550px;
+                width:550px;
+                border: 6px solid #059652;
               "
-              class="img img-fluid" 
-              >
+              class="img-fluid beautiful-image">
             </div>
             <div class="col-md-6">
                <p style="text-align:justify;">{{ n.title | safe }}</p>
@@ -48,26 +48,29 @@
           </div>
         </div><!-- End Section Title -->
          {% endfor %}
-        <div class="container section-title">
-          <h2>Our Activities</h2>
-          <div class="row gy-4">
+
+
+      <!-- ==================== OUR ACTIVITIES ==================== -->
+      <section id="activities" class="section py-5" style="background-color: #f9fbff;">
+        <div class="container py-5" style="max-width: 1200px;">
+          <h2 class="text-center mb-5 fw-bold text-uppercase" style="color: #000000; letter-spacing: 1px;">
+            Our Activities
+          </h2>
+
+          <div class="row gy-4 justify-content-center">
             {% for a in activity %}
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-              <div class="service-item  position-relative">
-                <div class="icon">
-                  <i class="bi bi-bell"></i>
-                </div>
-                <a href="#" class="stretched-link">
-                  <h3>{{ a.title }}</h3>
+            <div class="col-lg-4 col-md-6 col-sm-10" data-aos="zoom-in" data-aos-delay="100">
+              <div class="activity-card text-center">
+                <a href="#" class="stretched-link text-decoration-none">
+                  <h4>{{ a.title }}</h4>
                 </a>
-                <p>{{ a.sub_title | safe }}</p>
+                <p>{{ a.sub_title|safe }}</p>
               </div>
             </div>
             {% endfor %}
-            <!-- End Service Item -->
           </div>
         </div>
-      </section><!-- /Services Section -->
+      </section>
 
 
   <!-- news Section -->
@@ -78,7 +81,7 @@
         {% for n in news %}
         <div class="col-lg-4 col-md-4" data-aos="fade-up" data-aos-delay="100">
             <div class="service-item position-relative">
-                <img src="{{ n.image.url }}" alt="{{ n.title }}" class="img-fluid" style="width:100%; height: auto; margin-bottom: 10px;">
+                <img src="{{ n.image.url }}" alt="{{ n.title }}" class="img-fluid" style="height:300px;width:100%;margin-bottom: 10px;">
     
                 <a href="{% url 'news_details' n.id %}" class="stretched-link">
                     <h3>{{ n.title }}</h3>

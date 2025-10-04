@@ -1,22 +1,16 @@
 {% load static %}
-<style>
-  .working{
-    background: url('{% static "assets/img/bg2.jpg" %}') no-repeat center center;
-  }
-</style>
-<footer id="footer" class="footer light-background working">
+<footer id="footer" class="footer light-background">
 <div class="container">
     <div class="row gy-3">
       <div class="col-lg-3 col-md-6 d-flex">
         <i class="bi bi-geo-alt icon"></i>
         <div class="address">
           <h4>Address</h4>
+          {% for a in address %}
           <p style="text-align: justify;">
-            TANZANIA ELECTRIC MOBILITY ASSOCIATION (TAEMA)
-            Regent Estate - Mikocheni
-            Dar es Salaam 14112
-            Tanzania
+            {{a.address|safe}}
           </p>
+          {% endfor %}
           <p></p>
         </div>
 
@@ -26,10 +20,12 @@
         <i class="bi bi-telephone icon"></i>
         <div>
           <h4>Contact</h4>
-          <p>
-            <strong>Phone:</strong> <span>+255767184628</span><br>
-            <strong>Email:</strong> <span>info@taema.org</span><br>
+          {% for a in address %}
+          <p style="font-size: 18px;color:#fff">
+            <strong>Phone:</strong> <span>{{a.phone_number}}</span><br>
+            <strong>Email:</strong> <span>{{a.email}}</span><br>
           </p>
+          {% endfor %}
         </div>
       </div>
 
@@ -38,11 +34,11 @@
           <div class="row">
             <div class="col-md-8">
               <h4>Quick Links</h4>
-              <p>
-                <a href="{% url 'about' %}" style="color: rgb(40, 40, 40);">About</a><br>
-                <a href="{% url 'news' %}" style="color: rgb(40, 40, 40);">News & Updates</a>
-                <a href="{% url 'membership' %}" style="color: rgb(40, 40, 40);">Membership</a><br>
-                <a href="{% url 'downloads' %}" style="color: rgb(40, 40, 40);">Downloads</a>
+              <p style="font-size: 18px;">
+                <a href="{% url 'about' %}" style="color: rgb(255, 255, 255);">About</a><br>
+                <a href="{% url 'news' %}" style="color: rgb(255, 255, 255);">News & Updates</a>
+                <a href="{% url 'membership' %}" style="color: rgb(255, 255, 255);">Membership</a><br>
+                <a href="{% url 'downloads' %}" style="color: rgb(255, 255, 255);">Downloads</a>
               </p>
             </div>
           </div>
@@ -56,7 +52,7 @@
           <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
           <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
           <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-          <a href="https://www.linkedin.com/company/tanzania-electric-mobility-association-taema/" class="linkedin"><i class="bi bi-linkedin"></i></a>
+          <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
         </div>
       </div>
 

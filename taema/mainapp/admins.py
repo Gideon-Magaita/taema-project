@@ -12,7 +12,12 @@ from django.contrib.auth.forms  import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .decorators import unauthenticated_user,allowed_users,admin_only
-# from django.views.decorators.cache import never_cache
+#change password
+from django.contrib.auth.views import PasswordChangeView
+from .forms import PasswordChangeCustomForm
+from django.urls import reverse_lazy
+
+
 
 #authentication functions
 @unauthenticated_user
@@ -36,6 +41,11 @@ def logoutUser(request):
     logout(request)
     return redirect('login_user')
 
+#change password class
+class CustomPasswordChangeView(PasswordChangeView):
+    form_class = PasswordChangeCustomForm
+    template_name = 'pages/admins/change-password.html'
+    success_url = reverse_lazy('password_change_done')
 
 
 @login_required(login_url='login_user')
