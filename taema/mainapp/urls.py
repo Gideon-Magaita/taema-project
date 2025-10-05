@@ -118,6 +118,8 @@ urlpatterns=[
     path('individual-membership',admins.Individual_membership,name='Individual_membership'),
     path('organization_membership',admins.organization_membership,name='organization_membership'),
     
-
+    path('team-members/',admins.team_members, name='team_members'),
+    path('team-members/<int:id>/',admins.edit_team_member, name='edit_team_member'),
+    path('team-members/<int:id>/',admins.delete_team_member, name='delete_team_member'),
 
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

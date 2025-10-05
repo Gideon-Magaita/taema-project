@@ -88,6 +88,7 @@ def about(request):
     vision = Vision.objects.all()
     objective = Objective.objects.all()
     address = AddressModel.objects.all()
+    team = TeamMember.objects.all()
 
     context={
         'who':who,
@@ -95,6 +96,7 @@ def about(request):
         'vision':vision,
         'objective':objective,
         'address':address,
+        'team':team,
     }
     return render(request,'pages/users/about.html',context)
 
@@ -201,3 +203,4 @@ def organization_form(request):
         form = OrganizationForm()
     
     return render(request,'pages/users/organization-form.html', {'form': form,'address':address,})
+

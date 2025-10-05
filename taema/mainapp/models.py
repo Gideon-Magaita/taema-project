@@ -115,12 +115,16 @@ class Membership(models.Model):
     def __str__(self):
         return self.category
 
+
 class Benefit(models.Model):
+    image = models.ImageField(max_length=200, upload_to='images/', null=True, blank=True, default='')
     description = RichTextField()
     date = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return self.description
+
+
 
 class WorkingGroup(models.Model):
     title = models.CharField(max_length=200)
@@ -198,13 +202,12 @@ class Specialization(models.Model):
     def __str__(self):
         return self.area_name
 FEE_CHOICES = [
-    ('Tsh.5,000', 'Tsh.5,000'),
+    ('Tsh.0', 'Tsh.0'),
 ]
 
 ANNUAL_FEE_CHOICES = [
-    ('Tsh.10,000 1 Year', 'Tsh.10,000 1 Year'),
-    ('Tsh.20,000 2 Year', 'Tsh.20,000 2 Year'),
-    ('Tsh.30,000 3 Year', 'Tsh.30,000 3 Year'),
+    ('Tsh.0 1 Year', 'Tsh.0 1 Year'),
+    ('Tsh.0 2 Year', 'Tsh.0 2 Year'),
 ]
 Agree=[
     ('yes','Yes'),
@@ -215,7 +218,7 @@ class Individual(models.Model):
     city = models.CharField(max_length=200)
     email  = models.EmailField(max_length=200)
     mobile_number = models.CharField(max_length=13)
-    id_number = models.CharField(max_length=200)
+    id_number = models.CharField(max_length=20)
     area_of_specialization = models.ForeignKey(Specialization,on_delete=models.CASCADE,blank=Tree,null=True)
     name_of_the_organization = models.CharField(max_length=200)
     number_of_year_of_experience_in_emobility_sector = models.IntegerField()
@@ -271,3 +274,12 @@ class Organization(models.Model):
 
     def __str__(self):
         return self.organization_name
+
+class TeamMember(models.Model):
+    name = models.CharField(max_length=150)
+    position = models.CharField(max_length=150)
+    image = models.ImageField(upload_to='images/', null=True, blank=True)
+    date_added = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name

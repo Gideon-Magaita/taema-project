@@ -5,6 +5,24 @@
 .about-page{
     background: url('{% static "assets/img/bg1.jpg" %}') no-repeat center center;
   }
+.team-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 25px rgba(0, 128, 0, 0.2);
+    }
+
+    .team-card:hover .border-effect {
+      opacity: 1;
+      animation: borderGlow 2s infinite alternate;
+    }
+
+    @keyframes borderGlow {
+      0% {
+        box-shadow: 0 0 10px #059652, 0 0 20px #059652;
+      }
+      100% {
+        box-shadow: 0 0 25px #38d39f, 0 0 45px #38d39f;
+      }
+    }
 </style>
     <!-- Page Title -->
     <div class="page-title about-page" data-aos="fade">
@@ -33,7 +51,7 @@
         <div class="row gy-4">
           {% for w in who %}
           <div class="col-lg-8 content" data-aos="fade-up" data-aos-delay="100">
-            <p class="who-we-are">{{ w.title }}</p>
+            <h4 class="fw-bold text-uppercase" style="color: #059652;">{{ w.title }}</h4>
             <p style="text-align: justify;">
               {{ w.description | safe }}
             </p>
@@ -62,7 +80,7 @@
           
          {% for v in vision %}
           <div class="col-lg-8 content" data-aos="fade-up" data-aos-delay="100">
-            <p class="who-we-are">{{ v.title }}</p>
+            <h4 class="fw-bold text-uppercase" style="color: #059652;">{{ v.title }}</h4>
             <p style="text-align: justify;">
               {{ v.description | safe }}
             </p>
@@ -84,7 +102,7 @@
               >
           </div>
           <div class="col-lg-8 content" data-aos="fade-up" data-aos-delay="100">
-            <p class="who-we-are">{{ obj.title }}</p>
+            <h4 class="fw-bold text-uppercase" style="color: #059652;">{{ obj.title }}</h4>
             <p style="text-align: justify;">
               {{ obj.description | safe }}
             </p>
@@ -95,4 +113,37 @@
         </div>
       </div>
     </section><!-- /About Section -->
+
+  <!-- Meet Our Team Section -->
+<section id="team" class="team section py-5" style="background-color: #f8f9fa;">
+  <div class="container" data-aos="fade-up">
+    <div class="section-header text-center mb-5">
+      <h2 style="color: #059652; font-weight: 700;">Meet Our Team</h2>
+      <p style="font-size: 18px; color: #555;">Our dedicated team behind Tanzania’s Electric Mobility vision</p>
+    </div>
+    <div class="row justify-content-center g-4">
+      {% for member in team %}
+      <div class="col-md-4 col-lg-3 col-sm-6">
+        <div class="team-card text-center bg-white rounded-4 border border-3 border-success-subtle p-4 h-100 position-relative overflow-hidden"
+            data-aos="zoom-in" data-aos-delay="100"
+            style="transition: all 0.4s ease; cursor: pointer;">
+
+          <!-- Animated border glow -->
+          <div class="border-effect position-absolute top-0 start-0 w-100 h-100" 
+               style="border: 2px solid #059652; opacity: 0; border-radius: 1rem; transition: opacity 0.4s ease;"></div>
+
+          <div class="team-img mb-3 position-relative" style="z-index: 1;">
+            <img src="{{ member.image.url }}" alt="{{ member.name }}"
+                class="img-fluid rounded-circle border border-4 border-success shadow"
+                style="width: 160px; height: 160px; object-fit: cover;">
+          </div>
+
+          <h5 class="fw-bold mb-1" style="color: #059652;">{{ member.name }}</h5>
+          <p class="text-muted mb-0">{{ member.position }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
     {% endblock %}

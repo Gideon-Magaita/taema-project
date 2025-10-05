@@ -28,12 +28,12 @@
           <!--messages-->
           <div class="card shadow">
             <div class="card-header">
-              <h2>Benefits</h2>
+              <h2>Members</h2>
             </div>
             <div class="card-body">
               <!-- Button trigger modal -->
               <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#staticBackdrop">
-                Add Benefits
+                Add Members
                </button>
        
                <!-- Modal -->
@@ -41,7 +41,7 @@
                  <div class="modal-dialog modal-lg modal-dialog-centered">
                    <div class="modal-content">
                      <div class="modal-header">
-                       <h5 class="modal-title" id="staticBackdropLabel">Benefits form</h5>
+                       <h5 class="modal-title" id="staticBackdropLabel">Members form</h5>
                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                          <span aria-hidden="true">&times;</span>
                        </button>
@@ -69,6 +69,7 @@
                   <thead>
                     <tr>
                       <th>Description</th>
+                      <th>Image</th>
                       <th>Date</th>
                       <th>Actions</th>
                     </tr>
@@ -77,6 +78,13 @@
                     {% for item in  benefit %}
                       <tr>
                           <td>{{ item.description|safe }}</td>
+                          <td>
+                            {% if item.image %}
+                            <img src="{{ item.image.url }}" alt="{{item.title}}" height="100px" width="100px" srcset="">
+                            {% else %}
+                            <p class="text text-danger text-center">No image found</p>
+                            {% endif %}
+                          </td>
                           <td>{{ item.date }}</td>
                           <td style="display:flex;">
                               <a href="{% url 'edit_member_benefits' item.id %}" class="btn btn-success" style="margin-right: 10px;">Edit</a>

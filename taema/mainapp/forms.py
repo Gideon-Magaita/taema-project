@@ -135,9 +135,11 @@ class MembershipForm(ModelForm):
 class BenefitForm(ModelForm):
     class Meta:
         model = Benefit
-        fields=['description']
+        fields=['description','image']
         widgets = {
             'description':forms.Textarea(attrs={'class':'form-control','placeholder':'Enter news description','required':'required'}),
+            'image':forms.ClearableFileInput(attrs={'class': 'form-control'}),
+
         }
 
 
@@ -434,4 +436,16 @@ class OrganizationForm(forms.ModelForm):
             "terms_and_constitution_of_the_organization": forms.RadioSelect(attrs={
                 "class": "form-check-input",
             }),
+        }
+
+
+
+class TeamMemberForm(forms.ModelForm):
+    class Meta:
+        model = TeamMember
+        fields = ['name', 'position', 'image']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Full Name'}),
+            'position': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Position'}),
+            'image': forms.ClearableFileInput(attrs={'class': 'form-control'}),
         }

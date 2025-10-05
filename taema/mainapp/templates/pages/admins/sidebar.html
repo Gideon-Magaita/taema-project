@@ -101,6 +101,12 @@
             </a>
           </li>
           
+          <li class="nav-item">
+            <a href="{% url 'team_members' %}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Team</p>
+            </a>
+          </li>
         </ul>
       </li>
       <div class="dropdown-divider"></div>
@@ -139,7 +145,7 @@
           <li class="nav-item">
             <a href="{% url 'member_benefits' %}" class="nav-link  {% if request.path == '/member_benefits' %}active{% endif %}">
               <i class="far fa-circle nav-icon"></i>
-              <p>Benefits</p>
+              <p>Our Members</p>
             </a>
           </li>
           

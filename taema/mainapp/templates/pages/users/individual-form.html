@@ -163,7 +163,8 @@ form button.btn-success:hover {
             <div class="row">
             {% for radio in form.annual_membership_subscription %}
                 <div class="col-md-6 form-check">
-                {{ radio.tag }} {{ radio.choice_label }}
+                {{ radio.tag }} 
+                {{ radio.choice_label }}
                 </div>
             {% endfor %}
             </div>

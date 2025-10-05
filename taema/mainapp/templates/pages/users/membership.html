@@ -2,9 +2,13 @@
 {% block content %}
 {% load static %}
 <style>
-  .member-page{
+.member-page{
     background: url('{% static "assets/img/bg1.jpg" %}') no-repeat center center;
-  }
+}
+.logo-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(46, 202, 106, 0.3);
+}
 </style>
     <!-- Page Title -->
     <div class="page-title member-page" data-aos="fade">
@@ -63,25 +67,32 @@
           </div><!-- End Service Item -->
 
 
-
-          <!-- <div class="col-lg-12  col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="service-item  position-relative">
-              <div class="card">
-                <div class="card-header" style="background-color:#2eca6a;">
-                  <h1>The benefits of Members of the Association</h1>
+         <!--Members-->
+          <div class="col-lg-12 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="service-item position-relative">
+              <div class="card shadow-lg border-0">
+                <div class="card-header text-center text-white" style="background-color:#2eca6a; border-top-left-radius:10px; border-top-right-radius:10px;">
+                  <h1 style="font-weight:700; letter-spacing:1px;">Our Members</h1>
                 </div>
-                <div class="card-body">
-                  {% for b in benefit %}
-                 <p>
-                  {{ b.description|safe }}
-                 </p>
-                 {% endfor %}
+                <div class="card-body" style="background:#f8f9fa; border-bottom-left-radius:10px; border-bottom-right-radius:10px;">
+                  <div class="container py-3">
+                    <div class="row justify-content-center align-items-center g-4">
+                      {% for m in benefit %}
+                      <div class="col-6 col-md-4 col-lg-4 text-center">
+                        <div class="logo-card p-3 bg-white rounded-4 shadow-sm h-100 d-flex align-items-center justify-content-center" 
+                            style="transition:transform 0.3s, box-shadow 0.3s;">
+                          <img src="{{ m.image.url }}" alt="{{ m.title }}" 
+                              class="img-fluid" style="max-height:90px; object-fit:contain;">
+                        </div>
+                      </div>
+                      {% endfor %}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div> -->
-
-          
+          </div>
+          <!--End members-->
         </div>
       </div>
     </section><!-- /Services Section -->

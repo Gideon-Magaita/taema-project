@@ -3,54 +3,132 @@
 {% block content %}
 {% load static %}
 <style>
-.working{
-  background: url('{% static "assets/img/bg1.jpg" %}') no-repeat center center;
-}
-.service-item{
-    border: 3px solid #4CAF50;
-}
+  .working {
+    background: url('{% static "assets/img/bg1.jpg" %}') no-repeat center center;
+    background-size: cover;
+  }
+
+  /* Section background */
+  #services {
+    background-color: #f8f9fa;
+    padding: 60px 0;
+  }
+
+  /* Section title */
+  #services h1 {
+    color: #059652;
+    font-weight: 700;
+  }
+
+  /* Partner Card */
+  .partner-card {
+    background: #fff;
+    border: 2px solid #4CAF50;
+    border-radius: 15px;
+    overflow: hidden;
+    text-align: center;
+    transition: all 0.4s ease;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  }
+
+  .partner-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 25px rgba(0, 128, 0, 0.25);
+    border-color: #059652;
+  }
+
+  /* Image styling */
+  .partner-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: contain;
+    padding: 20px;
+    background: #fff;
+    transition: transform 0.4s ease;
+  }
+
+  .partner-card:hover img {
+    transform: scale(1.05);
+  }
+
+  /* Overlay on hover */
+  .partner-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 2px solid #38d39f;
+    border-radius: 15px;
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+
+  .partner-card:hover::before {
+    opacity: 1;
+    animation: borderGlow 2s infinite alternate;
+  }
+
+  @keyframes borderGlow {
+    0% {
+      box-shadow: 0 0 10px #059652, 0 0 20px #38d39f;
+    }
+    100% {
+      box-shadow: 0 0 25px #38d39f, 0 0 45px #059652;
+    }
+  }
+
+  /* Optional Partner Label */
+  .partner-label {
+    background: #059652;
+    color: white;
+    font-weight: 500;
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 0 0 12px 12px;
+  }
 </style>
-    <!-- Page Title -->
-    <div class="page-title working" data-aos="fade">
-      <div class="heading">
-        <div class="container">
-          <div class="row d-flex justify-content-center text-center">
-            <div class="col-lg-8">
-              <h1>Some of our Partners</h1>
-              <p class="mb-0">Corporate Members, Technical Partners and Funding Partners.</p>
-            </div>
-          </div>
+   <!-- Page Title -->
+<div class="page-title working" data-aos="fade">
+  <div class="heading">
+    <div class="container">
+      <div class="row d-flex justify-content-center text-center">
+        <div class="col-lg-8">
+          <h1>Our Partners</h1>
+          <p class="mb-0 text-white fw-semibold">Corporate Members, Technical Partners & Funding Partners</p>
         </div>
       </div>
-      <nav class="breadcrumbs">
-        <div class="container">
-          <ol>
-            <li><a href="{% url 'home' %}">Home</a></li>
-            <li class="current">Projects and Partnership</li>
-          </ol>
+    </div>
+  </div>
+  <nav class="breadcrumbs">
+    <div class="container">
+      <ol>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li class="current">Projects and Partnerships</li>
+      </ol>
+    </div>
+  </nav>
+</div>
+
+<!-- Partners Section -->
+<section id="services" class="services section">
+  <div class="container">
+    <div class="section-header text-center mb-5">
+      <h2 style="color: #059652; font-weight: 700;">Some of Our Partners</h2>
+      <p style="font-size: 18px; color: #555;">Proudly collaborating with institutions leading the transition to electric mobility.</p>
+    </div>
+
+    <div class="row gy-4 justify-content-center">
+      {% for p in partner %}
+      <div class="col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="partner-card">
+          <img src="{{ p.image.url }}" alt="{{ p.name }}">
+          {% if p.name %}
+          <div class="partner-label">{{ p.name }}</div>
+          {% endif %}
         </div>
-      </nav>
-    </div><!-- End Page Title -->
-
-    <!-- Services Section -->
-    <section id="services" class="services section">
-
-      <div class="container">
-
-        <div class="row gy-4">
-
-            {% for p in partner %}
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-              <div class="service-item position-relative">
-                <img src="{{ p.image.url }}" alt="Gallery Image" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">
-              </div>
-            </div><!-- End Service Item -->
-          {% endfor %}          
-        
-
-        </div>
-
       </div>
-
-    </section><!-- /Services Section -->
-    {% endblock %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

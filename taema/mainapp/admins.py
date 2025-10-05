@@ -1,5 +1,5 @@
 from email import message
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from .forms import *
 from .models import *
 from django.contrib import messages
@@ -698,7 +698,7 @@ def delete_member(request,id):
 def member_benefits(request):
     benefit = Benefit.objects.all()
     if request.method == 'POST':
-        form = BenefitForm(request.POST or None)
+        form = BenefitForm(request.POST or None,request.FILES or None)
         if form.is_valid():
             form.save()
             messages.success(request,'Benefit saved successfully')
@@ -720,7 +720,7 @@ def member_benefits(request):
 def edit_member_benefits(request,id):
     benefit = Benefit.objects.get(id=id)
     if request.method == 'POST':
-        form = BenefitForm(request.POST or None,instance=benefit)
+        form = BenefitForm(request.POST or None,request.FILES or None,instance=benefit)
         if form.is_valid():
             form.save()
             messages.success(request,'Benefit updated successfully')
@@ -1097,3 +1097,55 @@ def Individual_membership(request):
 def organization_membership(request):
     organizations = Organization.objects.all()
     return render(request, 'pages/admins/organization-form.html', {'organizations': organizations})
+
+
+@login_required(login_url='login_user')
+@admin_only
+def team_members(request):
+    team = TeamMember.objects.all().order_by('-date_added')
+    if request.method == 'POST':
+        form = TeamMemberForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Team member added successfully!')
+            return redirect('team_members')
+        else:
+            messages.error(request, 'Something went wrong. Please check the form.')
+    else:
+        form = TeamMemberForm()
+    context = {
+        'form': form,
+        'team': team,
+    }
+    return render(request, 'pages/admins/team.html', context)
+
+
+
+@login_required(login_url='login_user')
+@admin_only
+def edit_team_member(request, id):
+    member = get_object_or_404(TeamMember, id=id)
+    if request.method == 'POST':
+        form = TeamMemberForm(request.POST, request.FILES, instance=member)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Team member updated successfully!')
+            return redirect('team_members')
+        else:
+            messages.error(request, 'Something went wrong.')
+    else:
+        form = TeamMemberForm(instance=member)
+    context = {
+        'form': form,
+        'member': member,
+    }
+    return render(request, 'pages/admins/edit-team.html', context)
+
+
+@login_required(login_url='login_user')
+@admin_only
+def delete_team_member(request, id):
+    member = get_object_or_404(TeamMember, id=id)
+    member.delete()
+    messages.success(request, 'Team member deleted successfully!')
+    return redirect('team_members')
