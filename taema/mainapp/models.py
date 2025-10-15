@@ -266,7 +266,7 @@ class Organization(models.Model):
     email_the_representative  = models.EmailField(max_length=200)
     mobile_number_of_representative = models.CharField(max_length=13)
     describe_the_motivation_to_join_the_association= models.TextField()
-    what_are_the_organization_expectations_once_you_join_the_association = models.TextField()
+    organization_expectations = models.TextField(default=None)
     upload_Company_Profile = models.FileField(upload_to='images/')
     membership_Category = models.ManyToManyField(CategoryMembership)
     terms_and_constitution_of_the_organization = models.CharField(max_length=200,choices=TERMS)

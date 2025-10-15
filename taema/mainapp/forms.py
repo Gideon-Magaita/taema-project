@@ -357,7 +357,7 @@ class OrganizationForm(forms.ModelForm):
             "email_the_representative",
             "mobile_number_of_representative",
             "describe_the_motivation_to_join_the_association",
-            "what_are_the_organization_expectations_once_you_join_the_association",
+            "organization_expectations",
             "upload_Company_Profile",
             "membership_Category",
             "terms_and_constitution_of_the_organization",
@@ -420,7 +420,7 @@ class OrganizationForm(forms.ModelForm):
                 "rows": 4,
                 "required": "required",
             }),
-            "what_are_the_organization_expectations_once_you_join_the_association": forms.Textarea(attrs={
+            "organization_expectations": forms.Textarea(attrs={
                 "class": "form-control",
                 "placeholder": "What does your organization expect from the association?",
                 "rows": 4,
