@@ -64,6 +64,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'mainapp.custom_error_middleware.CustomErrorMiddleware',#custom error page
     #logoout without caching middleware
     'mainapp.mymiddleware.NoCacheMiddleware',
 ]
@@ -94,14 +95,11 @@ WSGI_APPLICATION = 'taema.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'taema',
-        'USER':'root',
-        'PASSWORD':'',
-        'PORT':'3306',
-        'HOST':'127.0.0.1',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / "db.sqlite3",
     }
 }
+
 
 
 # Password validation
